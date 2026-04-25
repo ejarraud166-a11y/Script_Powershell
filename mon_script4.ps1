@@ -28,11 +28,8 @@ Do {
 	
 	#Affichage du résultat de l'opération choisie
         Write-Host "Voici la $label de vos deux nombres : $result"
-	
-	#ENregistrement du calcul effectué dans un fichier nommé 
-        Write-Host "Voici la $label de vos deux nombres : $result"
 
-        #Définit le chemin du fichier historique dans le même dossier que le script
+        #Définit le chemin du fichier historique dans le même dossier que le script peu importe où il est exécuter
         $file = Join-Path -Path $PSScriptRoot -ChildPath "historique.txt"
 
         #Création du fichier historique s'il n'existe pas encore
@@ -40,7 +37,11 @@ Do {
             New-Item -Path $file -ItemType File | Out-Null
             Write-Host "Fichier historique cree : $file"
         }
+	#ENregistrement du calcul effectué dans un fichier contenant la date et l'heure de celui-ci
+        $line = "$(Get-Date -Format 'dd/MM/yyyy HH:mm:ss') : $First $op $Second = $result"
+        Add-Content -Path $file -Value $line
 
+        #Confirmation à l'utilisateur que le calcul a bien été sauvegardé dans le fichié 
         Write-Host "Votre calcul a ete enregistre dans : $file"
     }
 
