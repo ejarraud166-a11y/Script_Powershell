@@ -16,6 +16,6 @@ foreach ($Machines in $Machines) {
     Add-Content "rapport_machines_$Datee.txt" "$Machines est JOIGNABLE"
   }
   else {
-    Add-Content "rapport_machines_$Datee.txt" "$Machines est JOIGNABLE"
+    Add-Content "rapport_machines_$Datee.txt" "$Machines n'est pas JOIGNABLE"
   }
 }
