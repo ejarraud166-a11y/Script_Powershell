@@ -4,7 +4,7 @@
 #ce qui peut être pratique dans le cas où nous voulons a attribuer une adresse
 #à un poste mais que nous ne savons pas qu'elles adresses sont déja occupé.
 
-$LocalIP = (Get-NetIPAddress -AdressFamily IPv4 -InterfaceAlias "*Ethernet*","*Wi-Fi*" | 
+$LocalIP = (Get-NetIPAddress -AddressFamily IPv4 -InterfaceAlias "*Ethernet*","*Wi-Fi*" | 
     Where-Object { $_.IPAddress -notlike "169.*" } | 
     Select-Object -First 1).IPAddress
     $ReportFile = Join-Path -Path $PSScriptRoot -ChildPath "rapport_ip.txt"
