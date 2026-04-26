@@ -5,7 +5,7 @@ if (-not (Test-Path -Path $FilePath)) {
 }
 $Machines = Get-Content -Path $FilePath
 $Date = Get-Date -Format "dd-MM-yyyy_HH-mm-ss"
-$ReportFile = Join-Path -Path $PSScriptRoot -ChildPath "rapport_machines_$Date.txt"
+$ReportFile = Join-Path -Path $PSScriptRoot -ChildPath "rapport_machines.txt"
 New-Item -Path $ReportFile -ItemType File -Force | Out-Null
 Write-Host "`nFichier de rapport cree : $ReportFile"
 
@@ -18,16 +18,17 @@ foreach ($Machine in $Machines) {
 
   if ($Ping -eq $true) {
     Write-Host "$Machine est JOIGNABLE"
-    Add-Content "rapport_machines_$Date.txt" "$Date | $Machine est JOIGNABLE"
+    Add-Content "rapport_machines.txt" "$Date | $Machine est JOIGNABLE"
     $Joignable++
   }
   else {
     Write-Host "$Machine n'est pas JOIGNABLE"
-    Add-Content "rapport_machines_$Date.txt" "$Date | $Machine n'est pas JOIGNABLE"
+    Add-Content "rapport_machines.txt" "$Date | $Machine n'est pas JOIGNABLE"
     $NJoignable++
   }
 }
-Write-Host "`nTotal de machine JOIGNABLE : $Joignable"
+Write-Host "`n ---Resume---"
+Write-Host "Total de machine JOIGNABLE : $Joignable"
 Write-Host "Total de machine non JOIGNABLE : $NJoignable"
 Write-Host "`nLe script a corectement ete execute"
-Write-Host "Historique enregistre dans : $ReportFile"
+Write-Host "Rapport enregistre dans : $ReportFile"
