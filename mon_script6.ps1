@@ -6,7 +6,8 @@ if (-not (Test-Path -Path $FilePath)) {
 $Machines = Get-Content -Path $FilePath
 $Date = Get-Date -Format "dd-MM-yyyy_HH-mm-ss"
 $ReportFile = Join-Path -Path $PSScriptRoot -ChildPath "rapport_machines.txt"
-Add-Content -Path $ReportFile -Value " Rapport du : $(Get-Date -Format 'dd/MM/yyyy HH:mm:ss')"
+Add-Content -Path $ReportFile -Value "---------------------------------------------------------"
+Add-Content -Path $ReportFile -Value "Rapport du : $(Get-Date -Format 'dd/MM/yyyy HH:mm:ss')"
 Write-Host "`nFichier de rapport cree : $ReportFile"
 
 $Joignable = 0
@@ -27,6 +28,7 @@ foreach ($Machine in $Machines) {
     $NJoignable++
   }
 }
+Add-Content -Path $ReportFile -Value "---------------------------------------------------------"
 Write-Host "`n ---Resume---"
 Write-Host "Total de machine JOIGNABLE : $Joignable"
 Write-Host "Total de machine non JOIGNABLE : $NJoignable"
