@@ -6,7 +6,7 @@ if (-not (Test-Path -Path $FilePath)) {
 $Machines = Get-Content -Path $FilePath
 $Date = Get-Date -Format "dd-MM-yyyy_HH-mm-ss"
 $ReportFile = Join-Path -Path $PSScriptRoot -ChildPath "rapport_machines.txt"
-New-Item -Path $ReportFile -ItemType File -Force | Out-Null
+Add-Content -Path $ReportFile -Value " Rapport du : $(Get-Date -Format 'dd/MM/yyyy HH:mm:ss')"
 Write-Host "`nFichier de rapport cree : $ReportFile"
 
 $Joignable = 0
