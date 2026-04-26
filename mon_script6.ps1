@@ -18,14 +18,16 @@ foreach ($Machine in $Machines) {
 
   if ($Ping -eq $true) {
     Write-Host "$Machine est JOIGNABLE"
-    Add-Content "rapport_machines_$Datee.txt" "$Machine est JOIGNABLE"
+    Add-Content "rapport_machines_$Date.txt" "$Date | $Machine est JOIGNABLE"
     $Joignable++
   }
   else {
     Write-Host "$Machine n'est pas JOIGNABLE"
-    Add-Content "rapport_machines_$Date.txt" "$Machine n'est pas JOIGNABLE"
+    Add-Content "rapport_machines_$Date.txt" "$Date | $Machine n'est pas JOIGNABLE"
     $NJoignable++
   }
 }
-Write-Host "Total de machine JOIGNABLE : $Joignable"
+Write-Host "`nTotal de machine JOIGNABLE : $Joignable"
 Write-Host "Total de machine non JOIGNABLE : $NJoignable"
+Write-Host "`nLe script a corectement ete execute"
+Write-Host "Historique enregistre dans : $ReportFile"
