@@ -14,10 +14,10 @@ switch ($Number) {
             Select-Object -First 1).IPAddress
         $ReportFile = Join-Path -Path $PSScriptRoot -ChildPath "rapport_ip.txt"
         Add-Content -Path $ReportFile -Value "$LocalIP"
-        $Plage = $LocalIP -replace "\.\d+$" }
+        $Plage = $LocalIP -replace "\.\d+$"
         foreach ($i in 1..254) {
                 $IP = "$Plage.$i"
                 $Ping = Test-Connection -ComputerName $IP -Count 1 -Quiet -ErrorAction SilentlyContinue
-        }
+        } }
  
 } While ($Number -ne 3) 
